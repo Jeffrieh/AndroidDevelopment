@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Logic App Kotlin</string>
+    <string name="value_true">T</string>
+    <string name="value_false">F</string>
+</resources>
