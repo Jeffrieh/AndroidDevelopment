@@ -1,0 +1,13 @@
+<resources>
+    <string name="name">%1$s %2$s</string>
+    <string name="firstname">First Name</string>
+    <string name="app_name">User Profile</string>
+
+    <string name="lastname">Last Name</string>
+    <string name="open_picture_gallery">Open Gallery</string>
+
+    <string name="confirm">Confirm</string>
+    <string name="user_profile">Profile</string>
+    <string name="description">Description</string>
+
+</resources>
