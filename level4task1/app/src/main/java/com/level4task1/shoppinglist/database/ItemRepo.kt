@@ -1,7 +1,7 @@
-package com.level4task1.shoppinglistkotlin.database
+package com.level4task1.shoppinglist.database
 
 import android.content.Context
-import com.level4task1.shoppinglistkotlin.Item
+import com.level4task1.shoppinglist.Item
 
 class ItemRepo(context: Context) {
 

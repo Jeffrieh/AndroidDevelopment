@@ -1,4 +1,4 @@
-package com.level4task1.shoppinglistkotlin
+package com.level4task1.shoppinglist
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.level4task1.shoppinglistkotlin.database.ItemRepo
+import com.level4task1.shoppinglist.database.ItemRepo
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*

@@ -38,9 +38,6 @@ class MainActivity : AppCompatActivity() {
     fun playRound(PlayerMove: Int) {
         val cpuMove = (1..3).random()
 
-        System.out.println(resources[0])
-        System.out.println(cpuMove)
-
         move_cpu.setImageDrawable(
                 ContextCompat.getDrawable(
                         applicationContext,

@@ -1,4 +1,4 @@
-package com.level4task1.shoppinglistkotlin
+package com.level4task1.shoppinglist
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

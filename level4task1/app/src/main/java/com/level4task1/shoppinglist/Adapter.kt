@@ -1,4 +1,4 @@
-package com.level4task1.shoppinglistkotlin
+package com.level4task1.shoppinglist
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,10 +1,10 @@
-package com.level4task1.shoppinglistkotlin.database
+package com.level4task1.shoppinglist.database
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.level4task1.shoppinglistkotlin.Item
+import com.level4task1.shoppinglist.Item
 
 @Dao
 interface ProductDao {
