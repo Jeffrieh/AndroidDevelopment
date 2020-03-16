@@ -30,5 +30,4 @@ class MainActivity : AppCompatActivity() {
         var toast = Toast.makeText(applicationContext, text, duration);
         toast.show()
     }
-
 }
