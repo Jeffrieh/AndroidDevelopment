@@ -7,12 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+
 import kotlinx.android.synthetic.main.history_list.view.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.LocalDate
 
 public class Adapter(private val item: List<HistoryItem>) :
     RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     var resources = arrayOf<Int>(R.drawable.rock,R.drawable.paper,R.drawable.scissors)
+    val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm")
+
 
     lateinit var context: Context
 
@@ -21,10 +27,6 @@ public class Adapter(private val item: List<HistoryItem>) :
             LayoutInflater.from(parent.context).inflate(R.layout.history_list, parent, false)
         )
     }
-//
-   //fun removeItem(position: Int) = item.lis
-//    fun addItem(site: Sites) = questions.add(site);
-
     override fun getItemCount(): Int {
         return item.size
     }
@@ -36,6 +38,7 @@ public class Adapter(private val item: List<HistoryItem>) :
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: HistoryItem) {
             itemView.match_result_history.text = item.result
+            itemView.match_time.text = item.date
             itemView.imageView.setImageDrawable(ContextCompat.getDrawable(
                 itemView.context,
                 resources[item.cpuMove-1]

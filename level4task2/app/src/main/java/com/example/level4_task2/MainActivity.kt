@@ -4,15 +4,22 @@ import android.content.Intent
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.core.content.ContextCompat
 import androidx.room.Database
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.main_content.*
+import kotlinx.coroutines.*
+import java.sql.Timestamp
+import java.time.Instant
+import java.time.format.DateTimeFormatter
 
 class MainActivity : AppCompatActivity() {
 
-    var resources = arrayOf<Int>(R.drawable.rock,R.drawable.paper,R.drawable.scissors)
-    lateinit var db : AppDatabase;
+    var resources = arrayOf<Int>(R.drawable.rock, R.drawable.paper, R.drawable.scissors)
+    lateinit var historyRepo: HistoryRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,36 +27,48 @@ class MainActivity : AppCompatActivity() {
         rock.setOnClickListener({ playRound(1) })
         paper.setOnClickListener({ playRound(2) })
         scissor.setOnClickListener({ playRound(3) })
+//        open_history.setOnClickListener({ openHistory() })
+        setSupportActionBar(toolbar)
 
-        db = Room.databaseBuilder(
-                applicationContext,
-                AppDatabase::class.java, "HistoryItem.db"
-        ).allowMainThreadQueries().build()
+        historyRepo = HistoryRepo(this)
 
-        open_history.setOnClickListener({openHistory()})
     }
 
-    fun openHistory(){
+    fun goto_history_activity(){
         val intent = Intent(this, History::class.java)
-//            intent.putParcelableArrayListExtra("names", portals as java.util.ArrayList<out Parcelable>)
         startActivity(intent)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_show_history -> {
+                goto_history_activity()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
     }
 
     fun playRound(PlayerMove: Int) {
         val cpuMove = (1..3).random()
 
         move_cpu.setImageDrawable(
-                ContextCompat.getDrawable(
-                        applicationContext,
-                        resources[cpuMove-1]
-                )
+            ContextCompat.getDrawable(
+                applicationContext,
+                resources[cpuMove - 1]
+            )
         )
 
         move_you.setImageDrawable(
-                ContextCompat.getDrawable(
-                        applicationContext,
-                        resources[PlayerMove-1]
-                )
+            ContextCompat.getDrawable(
+                applicationContext,
+                resources[PlayerMove - 1]
+            )
         )
 
         var m_result = "";
@@ -70,7 +89,14 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        db.HistoryDao().insert(HistoryItem(null,m_result,cpuMove,PlayerMove))
+        addMatch(HistoryItem(null, m_result,Timestamp(System.currentTimeMillis()).toString(), cpuMove, PlayerMove));
+    }
 
+    private fun addMatch(item: HistoryItem) {
+        GlobalScope.launch {
+            withContext(Dispatchers.IO) {
+                historyRepo.insert(item)
+            }
+        }
     }
 }

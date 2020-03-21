@@ -5,7 +5,8 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
-@Dao interface DAO {
+
+@Dao interface HistoryDao {
     @Query("SELECT * FROM historyitem")
     fun getAll(): List<HistoryItem>
 
