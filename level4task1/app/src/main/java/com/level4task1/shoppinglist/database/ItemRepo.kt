@@ -14,11 +14,7 @@ class ItemRepo(context: Context) {
     }
 
     suspend fun getAllProducts(): List<Item> = productDao.getAllProducts()
-
     suspend fun insertProduct(item: Item) = productDao.insertProduct(item)
-
     suspend fun deleteProduct(item: Item) = productDao.deleteProduct(item)
-
     suspend fun deleteAllProducts() = productDao.deleteAllProducts()
-
 }

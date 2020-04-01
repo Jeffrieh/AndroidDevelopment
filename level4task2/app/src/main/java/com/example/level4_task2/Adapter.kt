@@ -17,8 +17,6 @@ public class Adapter(private val item: List<HistoryItem>) :
     RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     var resources = arrayOf<Int>(R.drawable.rock,R.drawable.paper,R.drawable.scissors)
-    val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm")
-
 
     lateinit var context: Context
 

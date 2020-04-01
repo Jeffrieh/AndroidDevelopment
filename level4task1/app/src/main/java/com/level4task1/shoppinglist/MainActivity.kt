@@ -13,10 +13,7 @@ import com.level4task1.shoppinglist.database.ItemRepo
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportActionBar?.title = "Shopping List Kotlin"
 
         setSupportActionBar(toolbar)
 
@@ -40,14 +36,15 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         rvShoppingList.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         rvShoppingList.adapter = productAdapter
+
         rvShoppingList.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         createItemTouchHelper().attachToRecyclerView(rvShoppingList)
-        getShoppingListFromDatabase()
+        fetchItems()
 
-        fab.setOnClickListener { addProduct() }
+        fab.setOnClickListener { addItems() }
     }
 
-    private fun getShoppingListFromDatabase() {
+    private fun fetchItems() {
         mainScope.launch {
             val shoppingList = withContext(Dispatchers.IO) {
                 itemRepo.getAllProducts()
@@ -58,19 +55,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateFields(): Boolean {
-        return if (etProduct.text.toString().isNotBlank() && etQuantity.text.toString().isNotBlank()) {
-            true
-        } else {
-            Toast.makeText(this, "Please fill in all required fields.", Toast.LENGTH_SHORT).show()
+    private fun validate(): Boolean {
+        return if (inItem.text.toString().isBlank() && inQuantity.text.toString().isBlank()) {
+            Toast.makeText(this, "Fill in every field.", Toast.LENGTH_SHORT).show()
             false
-        }
-    }
+        } else true
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
     }
 
     private fun createItemTouchHelper(): ItemTouchHelper {
@@ -84,15 +74,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
-
-                val productToDelete = shoppingList[position]
-
                 mainScope.launch {
                     withContext(Dispatchers.IO) {
-                        itemRepo.deleteProduct(productToDelete)
+                        itemRepo.deleteProduct(shoppingList[viewHolder.adapterPosition])
+                        fetchItems()
                     }
-                    getShoppingListFromDatabase()
                 }
             }
         }
@@ -104,33 +90,33 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) {
                 itemRepo.deleteAllProducts()
             }
-            getShoppingListFromDatabase()
+            fetchItems()
         }
     }
 
-
-    private fun addProduct() {
-        if (validateFields()) {
+    private fun addItems() {
+        if (validate()) {
             mainScope.launch {
                 val product = Item(
-                    name = etProduct.text.toString(),
-                    quantity = etQuantity.text.toString().toInt()
+                    name = inItem.text.toString(),
+                    quantity = inQuantity.text.toString().toInt()
                 )
 
                 withContext(Dispatchers.IO) {
                     itemRepo.insertProduct(product)
                 }
 
-                getShoppingListFromDatabase()
+                fetchItems()
             }
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_delete_shopping_list -> {
                 deleteItems()

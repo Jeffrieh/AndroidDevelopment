@@ -13,13 +13,13 @@
         android:id="@+id/rvShoppingList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/tilProduct"
+        app:layout_constraintBottom_toTopOf="@id/tilItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilProduct"
+        android:id="@+id/tilItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
@@ -28,10 +28,10 @@
         app:layout_constraintWidth_percent="0.75">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etProduct"
+            android:id="@+id/inItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="What to buy?"
+            android:hint="Item"
             android:inputType="text"
             android:maxLines="1" />
 
@@ -46,10 +46,10 @@
         app:layout_constraintWidth_percent="0.75">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etQuantity"
+            android:id="@+id/inQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="How many?"
+            android:hint="amount"
             android:inputType="number"
             android:maxLines="1" />
 
