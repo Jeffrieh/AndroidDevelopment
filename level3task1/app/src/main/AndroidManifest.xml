@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.level3task1.profiel.ProfileActivity"></activity>
+        <activity android:name="com.level3task1.profiel.ShowProfileActivity"></activity>
         <activity android:name="com.level3task1.profiel.AddProfileActivity" />
         <activity
             android:name="com.level3task1.profiel.SplashActivity"

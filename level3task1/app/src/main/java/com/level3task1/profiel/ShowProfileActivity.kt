@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_profile.*
 
-class ProfileActivity : AppCompatActivity() {
+class ShowProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,14 +15,14 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun initViews() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "This is your profile!"
+        supportActionBar?.title = "Your Profile"
 
         val profile = intent.getParcelableExtra<Profile>(PROFILE_EXTRA)
 
         if (profile != null) {
-            tvName.text = getString(R.string.name, profile.firstName, profile.lastName)
+            tvName.text = getString(R.string.name, profile.name, profile.surname)
             tvDescription.text = profile.description
-            if (profile.imageUri != null) ivProfileImage.setImageURI(profile.imageUri)
+            if (profile.picture != null) ivProfileImage.setImageURI(profile.picture)
         }
     }
 

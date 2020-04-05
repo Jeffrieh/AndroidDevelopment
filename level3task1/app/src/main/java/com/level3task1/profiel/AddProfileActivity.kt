@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_create_profile.*
 
 class AddProfileActivity : AppCompatActivity() {
 
-    private var profileImageUri: Uri? = null
+    private var picture: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,46 +18,43 @@ class AddProfileActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        btnGallery.setOnClickListener { onGalleryClick() }
-        btnConfirm.setOnClickListener { OnClick() }
+        btnConfirm.setOnClickListener { onClick() }
+
+        btnGallery.setOnClickListener { pickImageFromGallery() }
     }
 
-    private fun onGalleryClick() {
-        // Create an Intent with action as ACTION_PICK
-        val galleryIntent = Intent(Intent.ACTION_PICK)
-
-        // Sets the type as image/*. This ensures only components of type image are selected
-        galleryIntent.type = "image/*"
-
-        // Start the activity using the gallery intent
-        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
+    private fun pickImageFromGallery() {
+        // Intent to pick image
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_PICK_CODE)
     }
 
-    private fun OnClick() {
+    private fun onClick() {
         val profile = Profile(
             etFirstName.text.toString(),
             etLastName.text.toString(),
             etProfileDescription.text.toString(),
-            profileImageUri
+            picture
         )
 
-        val profileActivityIntent = Intent(this, ProfileActivity::class.java)
-        profileActivityIntent.putExtra(ProfileActivity.PROFILE_EXTRA, profile)
+        val profileActivityIntent = Intent(this, ShowProfileActivity::class.java)
+        profileActivityIntent.putExtra(ShowProfileActivity.PROFILE_EXTRA, profile)
         startActivity(profileActivityIntent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                GALLERY_REQUEST_CODE -> {
-                    profileImageUri = data?.data
-                    ivProfileImage.setImageURI(profileImageUri)
+                IMAGE_PICK_CODE -> {
+                    picture = data?.data
+                    ivProfileImage.setImageURI(picture)
                 }
             }
         }
     }
 
     companion object {
-        const val GALLERY_REQUEST_CODE = 100
+        const val IMAGE_PICK_CODE = 1000
     }
 }

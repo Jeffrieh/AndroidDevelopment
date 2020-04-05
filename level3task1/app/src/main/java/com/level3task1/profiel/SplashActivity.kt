@@ -11,7 +11,6 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        // Use Handler to wait 1 second before opening the AddProfileActivity.
         Handler().postDelayed({
             startActivity(
                 Intent(

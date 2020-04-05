@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes
 
 data class Place(
     var name: String,
-    @DrawableRes var imageResId: Int
+    @DrawableRes var image: Int
 ) {
     companion object {
         val PLACE_NAMES = arrayOf(
