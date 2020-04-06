@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar;
+import kotlinx.android.synthetic.main.question_list.view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,8 +36,9 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
                     val position = viewHolder.adapterPosition
+                    val arrPos = Question.QUESTIONS.indexOf(viewHolder.itemView.quiz_title.text)
 
-                    if ((swipeDir == 4 && !Question.ANSWERS[position]) || swipeDir == 8 && Question.ANSWERS[position]) {
+                    if ((swipeDir == 4 && !Question.ANSWERS[arrPos]) || (swipeDir == 8 && Question.ANSWERS[arrPos])) {
                         questionAdapter.removeItem(position)
                     } else {
                         val snack = Snackbar.make(viewHolder.itemView, "You got it wrong", 2000)
@@ -47,6 +49,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
             }
+
         val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
         itemTouchHelper.attachToRecyclerView(quiz_view)
     }

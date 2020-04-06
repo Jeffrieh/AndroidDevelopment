@@ -41,7 +41,7 @@ public class Adapter(private val questions: MutableList<Question>) :
 
         fun onClick(question: Question){
             val snack = Snackbar.make(itemView, "This Question is : ${question.answer}", 2000)
-            snack.show();
+            snack.show()
         }
     }
 
