@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         if(input1.text.toString() == "T") correctAnswers++
         if(input2.text.toString() == "F") correctAnswers++
-        if(input3.text.toString() == "T") correctAnswers++
+        if(input3.text.toString() == "F") correctAnswers++
         if(input4.text.toString() == "F") correctAnswers++
 
         val text = "Correct Answers is : ${correctAnswers}"
