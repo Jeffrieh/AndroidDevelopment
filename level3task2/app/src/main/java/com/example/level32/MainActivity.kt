@@ -1,13 +1,13 @@
 package com.example.level32
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
-import android.os.Parcelable
-
+import kotlinx.android.synthetic.main.activity_main.toolbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,16 +17,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val intent = intent
+
+        setSupportActionBar(toolbar)
+
+        val actionBar = supportActionBar
+        actionBar!!.title = "My Portals"
+        actionBar.setLogo(R.mipmap.ic_launcher)
+
         initViews()
-
-        val address = intent.getStringExtra("address")
-        val name = intent.getStringExtra("name")
-
-        if(address != null){
-            portals.add(Sites(name,address))
-        }
-
     }
 
     private fun initViews() {
@@ -36,14 +34,25 @@ class MainActivity : AppCompatActivity() {
 
         fab.setOnClickListener { view ->
             val intent = Intent(this, AddPortal::class.java)
-//            intent.putParcelableArrayListExtra("names", portals as java.util.ArrayList<out Parcelable>)
+            intent.putParcelableArrayListExtra(
+                "portals", ArrayList(portals)
+            )
+
             startActivity(intent)
         }
 
-        for (i in Sites.NAMES.indices) {
-            portals.add(Sites(Sites.NAMES[i], Sites.ADDRESS[i]))
+        val int = this.getIntent();
+        if (int.hasExtra("portals")) {
+            var bundle = int.extras
+            var arr = bundle?.getParcelableArrayList<Sites>("portals")!!
+            arr.forEach { portals.add(it) }
+        }else{
+            //fill the portals with some defaults.
+            portals.add(Sites("DLO", "https://www.dlo.mijnhva.nl"))
+            portals.add(Sites("SIS", "https://sis.hva.nl"))
         }
 
         portalAdapter.notifyDataSetChanged()
     }
+
 }

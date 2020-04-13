@@ -5,9 +5,11 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.portal_list.view.*
+import java.lang.Exception
 
 
 public class Adapter(private val questions: MutableList<Sites>) :
@@ -34,14 +36,21 @@ public class Adapter(private val questions: MutableList<Sites>) :
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(sites: Sites) {
-            itemView.button.text = sites.name + "\n" + sites.address
-            itemView.button.setOnClickListener { onClick(sites.address)  }
+            itemView.button.text =
+                sites.name + "\n" + sites.address.removePrefix("https://").removePrefix("http://")
+            itemView.button.setOnClickListener { onClick(sites.address) }
         }
 
-        fun onClick(address: String){
+        fun onClick(address: String) {
             val builder = CustomTabsIntent.Builder()
             val customTabsIntent = builder.build()
-            customTabsIntent.launchUrl(itemView.context, Uri.parse(address));
+
+            try {
+                customTabsIntent.launchUrl(itemView.context, Uri.parse(address));
+            } catch (e: Exception) {
+                Toast.makeText(itemView.context, "We could not launch this portal.", Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
     }
 
