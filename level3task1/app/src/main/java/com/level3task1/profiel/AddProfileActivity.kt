@@ -19,7 +19,6 @@ class AddProfileActivity : AppCompatActivity() {
 
     private fun initViews() {
         btnConfirm.setOnClickListener { onClick() }
-
         btnGallery.setOnClickListener { pickImageFromGallery() }
     }
 
