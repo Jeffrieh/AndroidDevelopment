@@ -18,7 +18,7 @@ abstract class HistoryDatabase : RoomDatabase() {
     abstract fun historyDao(): HistoryDao
 
     companion object {
-        private const val DATABASE_NAME = "SHOPPING_LIST_DATABASE"
+        private const val DATABASE_NAME = "HISTORY_DATABASE"
 
         @Volatile
         private var historyDatabaseInstance: HistoryDatabase? = null
