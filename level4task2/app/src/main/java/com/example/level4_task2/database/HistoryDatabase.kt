@@ -1,11 +1,8 @@
 package com.example.level4_task2
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.room.*
+import com.example.level4_task2.database.Converters
 
 //
 //val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -14,7 +11,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 //    }
 //}
 
-@Database(entities = [HistoryItem::class], version = 2, exportSchema = false)
+@Database(entities = [HistoryItem::class], version = 3, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class HistoryDatabase : RoomDatabase() {
 
     abstract fun historyDao(): HistoryDao

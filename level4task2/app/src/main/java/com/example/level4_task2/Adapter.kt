@@ -36,7 +36,7 @@ public class Adapter(private val item: List<HistoryItem>) :
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: HistoryItem) {
             itemView.match_result_history.text = item.result
-            itemView.match_time.text = item.date
+            itemView.match_time.text = item.date.toString()
             itemView.imageView.setImageDrawable(ContextCompat.getDrawable(
                 itemView.context,
                 resources[item.cpuMove-1]

@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        addMatch(HistoryItem(null, m_result,Timestamp(System.currentTimeMillis()).toString(), cpuMove, PlayerMove));
+        addMatch(HistoryItem(null, m_result,Timestamp(System.currentTimeMillis()), cpuMove, PlayerMove));
     }
 
     private fun addMatch(item: HistoryItem) {
