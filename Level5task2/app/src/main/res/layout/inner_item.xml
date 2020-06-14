@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="25dp"
+    android:layout_margin="10dp"
+    tools:context=".activity.MainActivity">
+
+    <RelativeLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="100dp">
+
+        <TextView
+            android:id="@+id/tvtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+
+            android:padding="10dp"
+            android:text="Title"
+            android:textColor="#000"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/tvPlatform"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:padding="10dp"
+            android:text="PC"
+            android:textColor="#000"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="date"
+            android:textColor="#000"
+            android:textSize="15dp" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

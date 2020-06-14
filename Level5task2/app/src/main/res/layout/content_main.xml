@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/constraintLayout"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="match_parent"
+        tools:context="com.appsdeveloperblog.kotlin.examples.CardViewExample"
+        android:orientation="horizontal">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rvGames"/>
+    </LinearLayout>
+
+
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:id="@+id/card"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="8dp">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+<!--            &lt;!&ndash; Media &ndash;&gt;-->
+<!--            <ImageView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="194dp"-->
+<!--                android:contentDescription="media"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                app:srcCompat="@mipmap/ic_launcher" />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:padding="16dp">-->
+
+<!--                &lt;!&ndash; Title, secondary and supporting text &ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="title"-->
+<!--                    android:textAppearance="?attr/textAppearanceHeadline6"-->
+<!--                    />-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:text="secondary tekst"-->
+<!--                    android:textAppearance="?attr/textAppearanceBody2"-->
+<!--                    android:textColor="?android:attr/textColorSecondary"-->
+<!--                    />-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:text="support tekstje"-->
+<!--                    android:textAppearance="?attr/textAppearanceBody2"-->
+<!--                    android:textColor="?android:attr/textColorSecondary"-->
+<!--                    />-->
+
+<!--            </LinearLayout>-->
+
+<!--            &lt;!&ndash; Buttons &ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="8dp"-->
+<!--                android:orientation="horizontal">-->
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginEnd="8dp"-->
+<!--                    android:text="Actie1"-->
+<!--                    style="?attr/borderlessButtonStyle"-->
+<!--                    />-->
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Actie2"-->
+<!--                    style="?attr/borderlessButtonStyle"-->
+<!--                    />-->
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+<!--    </com.google.android.material.card.MaterialCardView>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,9 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.question_list.view.*
-import kotlinx.android.synthetic.main.activity_main.view.*
-import android.view.animation.AnimationUtils
-import android.view.animation.Animation
 import com.google.android.material.snackbar.Snackbar;
 
 
