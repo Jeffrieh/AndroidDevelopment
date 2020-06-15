@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "306143107276",
+    "firebase_url": "https://watchrr-83b90.firebaseio.com",
+    "project_id": "watchrr-83b90",
+    "storage_bucket": "watchrr-83b90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306143107276:android:f6ee4e169fa350aa820a69",
+        "android_client_info": {
+          "package_name": "com.integer.watchrr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306143107276-9s9vaatc4gph72jp9ug5ahagtoodeqpe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB--BehTbfvr5SrkqOCY7YjZiO7dZFZgD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306143107276-9s9vaatc4gph72jp9ug5ahagtoodeqpe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
